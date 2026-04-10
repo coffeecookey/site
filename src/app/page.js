@@ -24,7 +24,7 @@ export default function HomePage() {
             <p className="font-serif italic text-lg text-ink-muted leading-relaxed mb-4">
               Undergrad at <em className="text-maroon not-italic">IGDTUW</em> | Batch of 2028
             </p>
-            <p className="text-sm text-ink-muted font-sans leading-relaxed mb-8">
+            <p className="text-sm text-ink-muted font-sans leading-relaxed">
               I would describe myself as someone who is adaptible, curious to learn, and is interested in a plethora of topics that intersect with, 
               or are a subset within the domain of computer science and IT.
               <br/>
@@ -42,12 +42,12 @@ export default function HomePage() {
               <br/>
               I'm currently in my second year of undergrad, pursuing a B.Tech in <em className="text-maroon not-italic">Information Technology</em> at <em className="text-maroon not-italic">Indira Gandhi Delhi Technical University for Women</em> (IGDTUW). Hoping to someday leave a positive mark through my work.
             </p>
-            <Link
+            {/* <Link
               href="/projects"
               className="inline-block bg-maroon text-off-white text-xs uppercase tracking-widest font-sans px-6 py-3 hover:bg-maroon-dark transition-colors"
             >
               View Archive
-            </Link>
+            </Link> */}
           </div>
           <div className="shrink-0 w-56 h-56 overflow-hidden -mt-14">
             <Image
