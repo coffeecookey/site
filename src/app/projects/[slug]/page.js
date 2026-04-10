@@ -8,12 +8,14 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const project = getProjectBySlug(params.slug)
+  const { slug } = await params
+  const project = getProjectBySlug(slug)
   return { title: `${project.title} — Tanisha Ojha` }
 }
 
-export default function ProjectPage({ params }) {
-  const project = getProjectBySlug(params.slug)
+export default async function ProjectPage({ params }) {
+  const { slug } = await params
+  const project = getProjectBySlug(slug)
   const { title, tags = [], excerpt, image, year, role, content } = project
 
   return (

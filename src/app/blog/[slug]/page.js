@@ -8,15 +8,17 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const post = getPostBySlug(params.slug)
+  const { slug } = await params
+  const post = getPostBySlug(slug)
   return {
     title: `${post.title} — Tanisha Ojha`,
     description: post.excerpt,
   }
 }
 
-export default function BlogPostPage({ params }) {
-  const post = getPostBySlug(params.slug)
+export default async function BlogPostPage({ params }) {
+  const { slug } = await params
+  const post = getPostBySlug(slug)
   const { title, tags = [], date, readingTime, content } = post
 
   return (
