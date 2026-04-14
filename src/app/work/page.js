@@ -21,7 +21,7 @@ const experience = [
 
 export default function WorkPage() {
   return (
-    <div className="px-10 py-16 max-w-3xl">
+    <div className="px-5 md:px-10 py-12 md:py-16 max-w-3xl">
       {/* Header */}
       <section className="mb-16">
         <p className="text-[0.65rem] uppercase tracking-widest text-ink-faint font-sans mb-4">

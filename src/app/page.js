@@ -10,7 +10,7 @@ export default function HomePage() {
   const projects = getAllProjects().slice(0, 3)
 
   return (
-    <div className="px-10 py-16 max-w-4xl">
+    <div className="px-5 md:px-10 py-12 md:py-16 max-w-4xl">
       {/* Hero */}
       <section id="about" className="mb-24">
         <p className="text-[0.65rem] uppercase tracking-widest text-ink-faint font-sans mb-5">
@@ -19,7 +19,7 @@ export default function HomePage() {
         <h1 className="font-serif text-5xl md:text-6xl font-bold text-ink leading-[1.05] mb-6">
           <span className="italic text-maroon">About</span> Me.
         </h1>
-        <div className="flex items-start gap-10">
+        <div className="flex flex-col-reverse md:flex-row items-start gap-8 md:gap-10">
           <div className="max-w-xl">
             <p className="font-serif italic text-lg text-ink-muted leading-relaxed mb-4">
               Undergrad at <em className="text-maroon not-italic">IGDTUW</em> | Batch of 2028
@@ -49,7 +49,7 @@ export default function HomePage() {
               View Archive
             </Link> */}
           </div>
-          <div className="shrink-0 w-56 h-56 overflow-hidden -mt-14">
+          <div className="shrink-0 w-40 h-40 md:w-56 md:h-56 overflow-hidden md:-mt-14">
             <Image
               src="/me.jpg"
               alt="Tanisha"

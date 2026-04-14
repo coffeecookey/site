@@ -19,7 +19,7 @@ export default async function ProjectPage({ params }) {
   const { title, tags = [], excerpt, image, year, role, content } = project
 
   return (
-    <div className="px-10 py-16 max-w-3xl">
+    <div className="px-5 md:px-10 py-12 md:py-16 max-w-3xl">
       {/* Tags */}
       <div className="flex flex-wrap gap-2 mb-6">
         {tags.map((tag, i) => (

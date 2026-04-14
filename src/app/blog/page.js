@@ -7,7 +7,7 @@ export default function BlogPage() {
   const posts = getAllPosts()
 
   return (
-    <div className="px-10 py-16 max-w-5xl">
+    <div className="px-5 md:px-10 py-12 md:py-16 max-w-5xl">
       {/* Header */}
       <section className="mb-6">
         <p className="text-[0.65rem] uppercase tracking-widest text-maroon font-sans mb-4">

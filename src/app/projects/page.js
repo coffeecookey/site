@@ -7,7 +7,7 @@ export default function ProjectsPage() {
   const projects = getAllProjects()
 
   return (
-    <div className="px-10 py-16 max-w-5xl">
+    <div className="px-5 md:px-10 py-12 md:py-16 max-w-5xl">
       {/* Header */}
       <section className="mb-16">
         <h1 className="font-serif text-5xl font-bold text-ink mb-1">

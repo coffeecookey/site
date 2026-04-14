@@ -43,7 +43,7 @@ export default async function BlogPostPage({ params }) {
   const headings = extractHeadings(content)
 
   return (
-    <div className="px-10 py-16 max-w-5xl flex gap-16">
+    <div className="px-5 md:px-10 py-12 md:py-16 max-w-5xl flex gap-16">
       {/* Main content */}
       <div className="flex-1 min-w-0">
         <Link
