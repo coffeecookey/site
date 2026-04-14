@@ -15,7 +15,7 @@ export default function ProjectsPage() {
         </h1>
         <div className="border-l-2 border-maroon pl-6 mt-8 max-w-lg">
           <p className="font-sans text-sm text-ink-muted leading-relaxed">
-            A deliberate assembly of digital experiences and engineering artifacts. This collection represents a commitment to structural clarity and aesthetic permanence.
+            collection of projects I've worked on. Each project reflects my passion and intention of growth, as an engineer. I like picking unique topics, allowing me to expand my knowledge before creating the projects.
           </p>
         </div>
       </section>

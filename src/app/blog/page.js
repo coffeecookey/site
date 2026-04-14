@@ -16,11 +16,11 @@ export default function BlogPage() {
         <div className="flex items-start justify-between gap-8">
           <div className="max-w-lg">
             <h1 className="font-serif italic text-5xl font-bold text-ink leading-[1.1]">
-              Observations on the{' '}
-              <span className="text-ink-muted">Human Experience.</span>
+              My little corner{' '}
+              <span className="text-ink-muted">of the Internet</span>
             </h1>
             <p className="text-sm text-ink-muted font-sans leading-relaxed mt-6 max-w-sm">
-              A curated collection of thoughts on engineering, design philosophy, and the intersection of craft and technology.
+              A collection of thoughts on engineering, design philosophy, books, or pretty much anything that intrigues me.
             </p>
           </div>
           {posts.length > 0 && (

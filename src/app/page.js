@@ -116,14 +116,14 @@ export default function HomePage() {
       </section> */}
 
       {/* Recent Writing */}
-      {/* {posts.length > 0 && (
+      {posts.length > 0 && (
         <section id="writing" className="mb-16 pt-16 border-t border-border">
           <div className="flex items-center justify-between mb-2">
             <h2 className="font-serif italic text-2xl font-semibold text-ink">
               Recent Writing
             </h2>
             <p className="text-xs text-ink-faint font-sans">
-              Occasional observations on design &amp; craft.
+              On tech, books &amp; anything interesting.
             </p>
           </div>
           <p className="text-[0.65rem] uppercase tracking-widest text-ink-faint font-sans mb-8">
@@ -140,7 +140,7 @@ export default function HomePage() {
             </Link>
           </div>
         </section>
-      )} */}
+      )}
 
       {/* Pull quote */}
       <section className="mb-24 pt-16 border-t border-border">
