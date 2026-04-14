@@ -39,10 +39,10 @@ export default function ProjectsPage() {
           Have a <span className="italic">vision?</span>
         </h2>
         <p className="text-sm text-ink-muted font-sans mt-3 max-w-sm leading-relaxed">
-          Open to select collaborations. Let us build something that endures.
+          Most of my social links are on the sidebar, but you can also reach me at my email,
         </p>
-        <a href="mailto:hello@tanishaojha.com" className="inline-block mt-4 font-serif italic text-lg text-maroon hover:underline underline-offset-4">
-          hello@tanishaojha.com
+        <a href="mailto:tanisha.ojha2004x2@gmail.com" className="inline-block mt-4 font-serif italic text-lg text-maroon hover:underline underline-offset-4">
+          tanisha.ojha2004x2@gmail.com
         </a>
       </section>
     </div>
