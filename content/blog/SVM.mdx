@@ -1,0 +1,44 @@
+---
+title: "SVM & Large Margin Classifiers"
+excerpt: "(Work in progress)"
+date: "Jun 17, 2026"
+tags: ["AI", "Machine Learning"]
+readingTime: "??"
+---
+
+## Motivation (You can skip this)
+I decided to take [this](https://learning.edx.org/course/course-v1:MITx+6.86x+2T2026/) course on machine learning, a few days ago.
+
+I had gotten used to thinking of ML models as black boxes, never bothering to learn more than how to run them.
+I realized my mistake when I was trying to read research papers, suddenly aware of how little I knew. 
+The task of reading a paper seemed cumbersome. Seeing the several squiggles in the form of greek letters, mathematical symbols, dots, and crosses
+littered across these pages, it seemed to numb my mind into a blur. I didn't like this and I wanted to understand these models. So, I decided to start from the basics.
+I like documenting what I learned, especially things that seem harder to me. 
+All of this finally led to me writing this blog at 1:30 am, instead of sleeping. 
+It's been 24 hours since I last slept, so let this be an ode to my awful sleeping schedule which I PROMISE I'll fix after this 😭
+
+## So...what's a classifier?
+### Overview
+A <b>classifier</b> is simply an algorithm that has one task - to go through an input dataset (could be images, text or multimodal too) and assign a label to each item in the dataset.
+For example, an input dataset of animals, where the model has to look at each image and classify the animal in it as either a 'cat', 'dog' or 'monkey'. 
+
+Classification as a whole, is a supervised learning problem. 
+You give a set of inputs to the classifier, the classifier looks at the inputs and generates output labels for each image/text or entry in the dataset. The goal is to classify the inputs into different categories.
+Another example, a model could take a bunch of emails labelled as spam or not spam, as input. It could then assign each of them a label, calculate the error (if any) and improve.
+
+Classification could be of many types - binary (2 categories), multi-class (>2 categories), multi-label (single data entry can have multiple labels). 
+We focus more on binary classification (since that's the one I've studied haha cope :3)
+
+### Mathy stuff
+Mathematically, a simple binary classification looks like this - 
+![Cool graph image I drew](/blog/classification1.png)
+
+It's actually really simple, In a 2D world, the model will try to find the equation of a line that will clearly divide the dataset into two halves (for now, we're talking about the training dataset).
+
+In a 3d world, it may try to find a plane that divides the space into two equal halves. 
+In an n-dimension world, it will divide the space into two equal haves using a <b>hyperplane</b>. 
+Cool stuff.
+
+Using the same spam example, the reason it tries to divide the space into 2 equal halves is so that it can safely label everything on one side as 'spam' and everything on the other side as 'not spam'.
+Or to put it more generically, it can label everything on one side 'positive' and everything on another side 'negative'.
+

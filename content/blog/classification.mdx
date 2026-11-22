@@ -1,0 +1,298 @@
+---
+title: "Classification: MP Neurons & Perceptrons"
+excerpt: "(Work in progress) Notes on classification from the ground up: what machine learning actually is, how classifiers work, and tracing the lineage from the McCulloch-Pitts neuron to the Perceptron."
+date: "Aug 28, 2026"
+tags: ["AI", "Machine Learning", "Fundamentals"]
+readingTime: "12 min read"
+---
+
+*Notes from a presentation made for the ACM Summer Research Internship.*
+
+## Fundamentals: What is Machine Learning?
+
+- Machine learning is the science of programming computers to learn patterns from data and perform tasks without explicit, step-by-step instructions.
+- But the black box here is **learning**. How does a computer learn? Here's a general idea:
+  - The computer tries to do something, repeatedly. Each time, there is some outcome.
+  - It uses the outcome to improve itself and adjusts itself to get better with every repetition.
+  - Eventually, these little adjustments stack up and turn into an actual skill that the computer can use.
+- For the more academic ones, here's a more **formal definition**:
+
+> *A computer program is said to learn from experience E with respect to some task T and performance measure P, if its performance at task T, as measured by P, improves with experience E.*
+
+## Fundamentals: Types of Machine Learning
+
+There are several different ways a machine can learn, but here are the most basic ones:
+
+- **Supervised Learning:** The machine is shown examples that are already labelled with the correct answer, so it can check its results and correct itself, much like learning with an answer key.
+- **Unsupervised Learning:** No right answers are given. The computer studies the data and finds patterns or groups on its own.
+- **Reinforcement Learning:** The computer learns by trying actions and getting rewards or penalties based on the outcome. Good actions are "reinforced" over time, bad actions are discouraged.
+
+## Supervised Machine Learning - How does it work?
+
+- **Data:** You give your model a bunch of data, along with the labels associated with the data. The labels are the **correct outputs**.
+- **Training:** Your model **trains** on this data. Training means that it looks at each data and each label associated with it. It can train any number of times. When a model performs one pass through the whole training data, we call it 1 epoch. There is no fixed rule for how many epochs you should run your model for.
+- **Validation:** Your model is now evaluated on a **validation set**. This helps us understand how the model performs on unseen data without letting it see the final test set. This also helps you finalise for how many epochs you want to run the model on the test set.
+- **Testing:** Finally, your model will run on the test set. You will run your model on the test set to evaluate its final performance. This gives an unbiased estimate of how well the model performs on completely unseen data.
+
+## Classification - What does it do?
+
+- Supervised ML (uses labeled data).
+- Think of it as putting data into different buckets/categories/classes.
+- e.g. classifying emails as spam or not spam, benign tumour or malicious tumour.
+
+### Types of classification
+
+| Type | Rule | Labels | Example |
+|---|---|---|---|
+| **Binary** | Each data entry can be assigned 1 label max | Total of 2 labels | 0 or 1, positive or negative, benign or malicious |
+| **Multi-class** | Each data entry can be assigned 1 label max | >2 labels | Classifying tweets based on the emotion they express, i.e. sadness, joy, anger, fear etc. |
+| **Multi-label** | Data entries can be assigned any number of labels | >2 labels | Classifying an image with labels like hateful, racial hate, 0 sarcasm |
+
+## Classification - What is a classifier?
+
+- A classifier is a model.
+- This means that for every input it has, it tries to find the relationship/mapping/function between the inputs and the labels.
+- You can have many different types of classifiers, such as linear or non-linear classifier models:
+
+**Linear classifiers:**
+- Logistic Regression
+- Support Vector Machines
+- Single-layer Perceptron
+- Stochastic Gradient Descent (SGD) Classifier
+
+> An algorithm that makes a classification decision for each object based on a **linear** combination of its features is known as a **Linear classifier**.
+
+**Non-linear classifiers:**
+- K-Nearest Neighbours
+- Kernel SVM
+- Decision Tree Classification
+- Random Forests
+- AdaBoost
+- Bagging Classifier
+- Voting Classifier
+- Extra Trees Classifier
+- Multi-layer Artificial Neural Networks
+
+> An algorithm that makes a classification decision for each object based on a **non-linear** combination of its features is known as a **Non-Linear classifier**.
+
+### Chronological order
+
+1. MP neuron (1943)
+2. Single-layer perceptron (1957)
+3. Logistic Regression (~1958)
+4. K-Nearest Neighbours (1967)
+5. Decision Trees (~1984-86)
+6. Multi-layer ANN (1986)
+7. SVM (1992-95)
+8. AdaBoost (1995)
+9. Stochastic Gradient Descent (SGD) Classifier (idk)
+10. Bagging classifier (1996)
+11. Random forest (2006)
+
+## Classification - Example
+
+*[Image placeholder: hand-drawn flow diagram — Dataset → Handling Data → Model Selection → Input: Data, Label → Model → Output: Trained Model, e.g. predicting unemployment rate]*
+
+- **Dataset** — e.g. predict unemployment rate.
+- **Handling data** — missing values, is each data entry independent of the other, which variables are useful for prediction?
+- **Model selection** — what type of data, how much data, etc.
+- **Input: data, label** feeds into the **model**, which outputs a **trained model**.
+
+*[Image placeholder: hand-drawn diagram showing data entry / label / weights as arrays, and the training loop]*
+
+The training loop, in more detail:
+
+1. Model makes a prediction.
+2. Check prediction vs. actual label.
+3. If prediction is wrong, compute the error (loss).
+4. Adjust weights to reduce error.
+5. Repeat, many many times (several epochs).
+6. Do this till the model **converges** OR error is minimum.
+
+Output: an array of adjusted weights — the **trained model**.
+
+## Classification Models (MP Neuron)
+
+- The MP (McCulloch–Pitts) neuron was one of the earliest classifiers and you couldn't really "train" it per say. McCulloch was a neuroscientist and Pitts was a logician.
+- They modeled it after a neuron, they were trying to create an artificial brain.
+- There was no iterative algo to change the weights automatically so you had to manually change whatever you wanted to, including the learning rate, weights etc.
+- It was a sophisticated logical method and paved the way for many models, but it wasn't exactly machine "learning".
+
+*[Image placeholder: McCulloch-Pitts neuron diagram — inputs x1...xn → g(x) aggregation → f(x) firing decision → output [1, 0]]*
+
+1. `{x1...xn} ∈ [0,1]` — input data
+2. `g(x)` — a function to aggregate the inputs
+3. `f(x)` — decides whether neuron will fire or not
+
+### The actual (biological) neuron
+
+- They thought that once the neurons take all the inputs, they have some mechanism to "aggregate" or collect these inputs together.
+- After collecting these inputs, they use some mechanism to decide whether a neuron will fire or not.
+- They realized that increasing the stimulus did not affect the output at all BUT when they kept increasing it, they realized that the neuron reached some "threshold" value. Once this value was crossed, it fired.
+
+*[Image placeholder: hand-drawn diagram of a biological neuron — dendrites taking in inputs, "all or none law": neuron either generates a full impulse or nothing, increasing the stimulus has no effect whatsoever]*
+
+### The math
+
+```
+g(x) = x1 + x2 + ... + xn = Σ xi
+
+y = 1   if g(x) >= θ
+y = 0   if g(x) < θ
+```
+
+Here, θ is the "threshold" — this is a value you need to hard-code in the MP neuron.
+
+**The steps:**
+1. Add up all the inputs.
+2. Compare sum to threshold.
+3. Sum ≥ threshold → output 1.
+4. Sum < threshold → output 0.
+
+**Try it yourself:**
+```
+inputs = [1, 1, 0]
+threshold = 2
+total = 1 + 1 + 0 = 2
+2 >= 2, so...
+output = 1 (fire!)
+```
+
+```python
+def mp_neuron(inputs, threshold):
+    if sum(inputs) >= threshold:
+        return 1
+    else:
+        return 0
+```
+
+**Algorithm:**
+```
+Input: x1, x2, ..., xn        (each is 0 or 1)
+Given: threshold θ            (a fixed number, chosen by hand)
+
+Step 1: Compute the sum of all inputs
+        sum = x1 + x2 + ... + xn
+
+Step 2: Compare sum to threshold
+        if sum >= θ:
+            output = 1     (fire)
+        else:
+            output = 0     (don't fire)
+
+Step 3: Return output
+```
+
+Fun fact: you can make logic gates like OR, AND, NAND etc. from an MP neuron.
+
+When you can make logic gates out of something (like MP neurons, minecraft redstone, dominoes, Terraria, Conway's game of life, Rule 110, Slime mould, Excel sheets) you can also use them to make WHOLE COMPUTERS!
+
+*[Image placeholder: video thumbnail grid — minecraft redstone computer, the 10,000 domino computer, computers made of light bulbs, a RISC CPU built in Excel, Conway's Game of Life turing completeness, and building computers in Roblox]*
+
+### Where it fails
+
+- **No learning:** Weights and threshold are fixed by hand, and there's no way for the model to improve from data or mistakes. A human has to MANUALLY adjust the weights or threshold.
+- **No nuance in inputs:** Inputs must be 0 or 1, all count equally, and there's no smooth "how close was it" signal, so real world details get lost.
+
+**When no threshold works: should I go outside?**
+
+Inputs: raining? have umbrella? already sick? (each 0 or 1)
+
+Training examples:
+- Person A: rain=1, umbrella=1, sick=0, sum=2 → safe, GO OUT
+- Person B: rain=1, umbrella=0, sick=1, sum=2 → risky, STAY IN
+- Person C: rain=1, umbrella=1, sick=1, sum=3 → still risky, STAY IN
+- Person D: rain=0, umbrella=0, sick=0, sum=0 → safe, GO OUT
+
+A and B have the SAME sum (2), but need opposite outputs.
+
+**No matter what θ you pick:**
+- θ = 2 → A correctly goes out, but B also goes out (wrong, B is sick).
+- θ = 1 → fixes B, but now C (sum=3) still wrongly goes out too.
+
+```
+at θ=0:  f(x) = 1 if g(x) >= 0, else 0
+at θ=1:  f(x) = 1 if g(x) >= 1, else 0
+at θ=2:  f(x) = 1 if g(x) >= 2, else 0
+```
+
+**Why it breaks:**
+
+"Umbrella" should push toward going out, but "sick" should push against it. MP neuron treats every "yes" the same, with no way to say one input matters more, or in the opposite direction, than another.
+
+That's the fixed version. The logic is now grounded: an umbrella genuinely makes going out safer, being sick genuinely makes it riskier — but the MP neuron has no way to encode "this input counts *against* firing" versus "this input counts *for* firing" with different strengths. It just adds everything up as if all "yes" answers point the same direction, which is exactly why no single threshold can separate the safe cases from the risky ones here.
+
+## Weights
+
+- It's clear from the MP neuron, NOT every feature of a dataset is as important as the other. We need some mechanism to control this importance or to control how much "weightage" we give to one feature over the other.
+- A weight represents 2 things: HOW much does something matter and in WHAT DIRECTION.
+- For e.g. an umbrella is very helpful if you go out in the rain (+0.8) but being sick is a strong indicator that you should NOT go out (-0.9).
+
+*[Image placeholder: weighted sum diagram — Umbrella (w = +0.8, helps a lot), Sick (w = -0.9, pushes against), Windy (w = +0.1, barely matters) → weighted sum = 0.8 - 0.9 + 0.1 = 0.0 → stay in]*
+
+## Classification (Perceptron) - How does it work?
+
+- The Perceptron (Rosenblatt, 1958) was the first model that could learn its own weights from data — the missing piece MP neurons never had.
+- Same basic shape as an MP neuron (inputs → aggregate → fire or not), but now every input gets its own weight, and there's a bias instead of a fixed hand-set threshold.
+- Biologically: weights are the model's stand-in for synaptic strength — some connections between real neurons are stronger than others, so their signal counts for more. MP neurons had no way to represent that; the Perceptron does.
+- Key shift: instead of a human manually tuning the threshold, the Perceptron has an iterative rule that adjusts weights automatically based on whether it got an example right or wrong.
+
+*[Image placeholder: hand-drawn Perceptron diagram — inputs x1...xn and bias b feeding into g/f → ŷ]*
+
+```
+g(x) = w1*x1 + w2*x2 + ... + wn*xn
+
+f(x) = 0   if g(x) <= b
+f(x) = 1   if g(x) > b
+```
+
+- `b`: bias/offset
+- `φ(x) = {x1...xn}`: dataset
+- `y`: actual answer/label
+- `ŷ`: prediction
+- `error = y - ŷ`
+
+Read more: [Rosenblatt Perceptron](https://en.wikipedia.org/wiki/Perceptron)
+
+## Classification (Perceptron) - Math
+
+```
+for each (data entry):
+    // model reads the input data
+    // model predicts what the label is
+    if (prediction == label):
+        // do nothing lol
+    if (prediction != label):
+        model compute error
+        model updates weight vector
+```
+
+**Algorithm: Perceptron Learning Algorithm**
+
+```
+Input: training examples (x, y), learning rate η
+        - x = [x1, x2, ..., xn]  (real-valued inputs)
+        - y = true label (0 or 1)
+Initialize: weights w = [0, 0, ..., 0], bias b = 0
+
+Repeat for a fixed number of epochs (or until no mistakes):
+    for each training example (x, y):
+        Step 1: Compute the weighted sum
+                z = w1*x1 + w2*x2 + ... + wn*xn + b
+
+        Step 2: Predict using the step function
+                y_hat = 1 if z >= 0
+                y_hat = 0 if z < 0
+
+        Step 3: Compute the error
+                error = y - y_hat
+
+        Step 4: Update weights and bias
+                for each weight wi:
+                    wi = wi + η * error * xi
+                b = b + η * error
+
+Return: final weights w, bias b
+```
+
+*(Try it yourself in Google Colab.)*

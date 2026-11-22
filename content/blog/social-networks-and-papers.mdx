@@ -1,0 +1,167 @@
+---
+title: "Paper wrap - November, 2026"
+excerpt: "(Work in progress) Short review of some papers that I read in Nov, while working on my social networks paper and TARA"
+date: "Nov 15, 2026"
+tags: ["AI", "Social networks", "AI Safety", "Agent-based Models", "Review"]
+readingTime: "12 min read"
+---
+
+# Paper 1: Model-Specific Echo Chamber Formation Patterns in Repeated LLM Agent Networks 
+[Link to paper](https://dl.acm.org/doi/10.1145/3816713.3816738)
+
+## The Gaps
+- Existing papers explore how to improve collaboration in multi-agentic systems,
+or focus on usefulness of diversity. 
+They don't examine the results that different models will produce in the same 
+experimental considerations
+- Models may be prone to sycophancy, reducing over all reliability of the results 
+- Models may converge to an opinion, this does not mean that the consensus is the best result
+- Some research suggests that even smth as small as how the models come to decisions,
+can influence what the final consensus of a discussion be
+
+## Their Work
+this paper examines:
+- how echo chambers form across different models 
+-whether the trajectory changes with the type of model being used
+
+To study this, they had model-specific groups repeatedly interact while the topics,
+network struc, recommendation rules, were all kept the same.
+
+they compared the values of - 
+1. Polarization Index (Pz): Measures the extent to which a network's population is divided into distinct groups with opposing beliefs. 
+2. Global Disagreement (DG): Measures the overall difference in opinions between all pairs of individuals in a network, regardless of whether they are directly connected.
+3. Neighbor Correlation Index (NCI): Measures how strongly individuals' beliefs correlate with the beliefs of their immediate network neighbors (people they are connected to).
+4. Mean Belief Shift: Measures the average change in individuals' beliefs over a given period or number of interaction rounds.
+
+To further check if their results were due to the interaction style or repeated updating,
+an auxillary no interaction control study was done for GPT-4o
+
+### Experiment Design
+- Independent variable: type of model used to make the agent group 
+- Dependent variables: Pz, DG, NCI, and Mean Belief Shift
+- Models used: GPT-4o,GPT-5.4-mini, Llama-3.3-70B, Mistral-Small-24B, Gemma-3n-E4B, and GLM-4.5-Air. 
+- Topic chosen for models to debate: Is there such a thing as a paradox of free speech?
+
+1 experiment = 1 group 
+num of agents in 1 group = 50
+num of rounds = 30
+network struc remains same for all experiments
+recommendation algorithm remains same for all experiments
+
+note - 
+experimental scale and the network-based interaction struc-ture were designed by referring to the LLM-based social opinionsimulation framework of Wang et al. [1].
+
+- The agent network used a fixed Watts–Strogatz small-world topology with 50 agents, andthe same network setting was applied to all model groups. 
+More specifically, the network was initialized with k = 6 and rewiring probability p = 0.1, and this topology was kept the same within each run
+- for each round, each neighbour received 5 opinion texts from neighbours who were selected as per the
+rules of the recommendation system (it picked agents whos belief difference was less than 2.0 with the current agent)
+- opinion update step: each agent receives a structured prompt that includes its persona, 
+current belief, current opinion text, long-term memory, and the opinion texts of the recommended neighbors.
+- an interaction condition and a no-interaction condition for the GPT-4o group was also studied
+- In the no-interaction setting, the neighbouring opinion texts were not provided to the agent
+The agent used its own persona and configuration to reflect on its opinion. The update
+step was similar to the interaction setting.  
+
+### Persona
+The attributes were:
+- age
+- gender
+- big 5 personality trait
+- opinion value (range of [-2, 2])
+- short term memory
+- long term memory
+
+
+## Results
+With respect to convergence or diagreement:
+
+- GPT-4o: fastest convergence pattern
+- GLM-4.5-Air: flat pattern with no clear change
+- llama-3.3-70B, Mistral-Small-24B, and GPT-5.4-mini: more repeated interactions 
+- lead to more dispersion and disagreements
+
+With respect to Pz:
+- GPT-4o: Pz decreased rapidly from 1.12 to 0.33 in round 10 and 0.07 in round 30
+This meant that the difference in opinion between diff groups greatly reduced, the more they interacted
+- Mistral-Small-24B, GPT-5.4-mini, Gemma-3n-E4B: increase in Pz through more interactions. 
+Rapid increase for Mistral-Small-24B,  GPT-5.4-mini and moderate increase for Gemma-3n-E4B
+- GLM-4.5-Air: Not much change in Pz at all 
+
+With respect to DG:
+- GPT-4o: DG increased quickly i.e. 
+difference of opinion among neighbouring agents reduced rapidly
+- Mistral-Small-24B, GPT-5.4-mini, Gemma-3n-E4B: DG decreased i.e. larger difference in opinion with neighbouring agents
+-  GLM-4.5-Air: Not much change in DG at all 
+
+## Main finding
+the type of model affects the final outcome of a discourse in agentic networks, even if the
+network structure, recommendation algo, topics, language, etc. are the same.
+
+
+# Paper 2: Multilingual Agent-Based World Modeling for Social Science
+[Link to paper](https://arxiv.org/pdf/2512.07195)
+
+## Motivation
+- opinions and attitudes on global issues are formed through multilingual and
+multimodal online discourse
+- if agents can take human memory and emulate human behavior, they can act as proxies
+for humans in social scientific research or complement them 
+- Agent-based modeling (ABM) is already using in applications like:
+1. studying group/societal behaviour
+2. interpreting social phenomena
+3. exploring social theories
+4. predicting policy outcomes
+
+## The Gaps
+- cross-lingual and cross-cultural dynamics are understudied in ABMs
+- 
+
+## Their work
+- Create  Multilingual Agent-based World Modeling (MAWM) framework, for societal 
+modelling in a multi-turn format between LLM agents with diverse personas
+- Construction of Multilingual Agent Perspective Survey (MAPS), a benchmark dataset 
+with  survey questions from GlobalOpinionQA, demographic personas derived from the World Values Survey,
+spanning 50 countries and 28 languages across geographically diverse regions.
+- experiments and case studies on cultural assimilation and normative diffusion
+
+### Dataset
+-  they pair user settings sampled from multicultural populations with a broad set of social research 
+questions
+- for constructing user settings, they draw personas from World Values Survey
+- Persona attributes: age, education, gender, marital status, occupation, political preference,
+religion, and social class
+- For multilingual agent simulation, a native language is assigned
+based on country
+
+### Framework
+MAWM is a framework where multi-turn interaction takes place between users and new organisation
+agents. 
+news org agents will generate posts to influence users 
+users will compose posts, read recommended posts, and can vote on survey questions
+
+# Paper 3: Detecting Strategic Deception Using Linear Probes
+[Link to paper](https://arxiv.org/pdf/2502.03407)
+
+## Overview
+Models may employ strategies like obscuring their CoT to hide traces of deception, rendering a monitor agent useless. This paper evaluates
+whether linear probes can robustly identify deception or not.
+
+## Their work
+
+### Datasets used
+they use 2 datasets, 
+- one w contrasting instructions to be honest or deceptive 
+- one w responses to simple roleplaying scenarios
+
+aim is to test whether linear probes generalise to actual settings of deceptive behaviour by Llama-3.3-70BInstruct.
+this paper focuses on <b>strategic deception<\b> ie the model focuses on inducing false beliefs to achieve some goal.
+
+### Motivation
+Big alignment risk is AI pursuing misaligned goals while also deceiving and hiding it's motives and actions.
+For e.g. sandbagging their evaluations or falsely pretending as if they are aligned
+
+### gaps 
+- prev work does not consider multi-turn conversations so their approach may not generalize well to these settings
+- evaluates human written responses, not agent written
+- focus on factual domains
+
