@@ -3,11 +3,11 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import Tag from '../../../components/ui/Tag'
 import Link from 'next/link'
 import TableOfContents from '../../../components/ui/TableOfContents'
-import { extractHeadings, slugify } from '../../../lib/toc'
+import { extractHeadings, rehypeHeadingIds } from '../../../lib/toc'
 
+// Headings are styled in globals.css (.mdx-content h1-h4) and get their ids
+// from rehypeHeadingIds, so they need no overrides here.
 const mdxComponents = {
-  h2: ({ children }) => <h2 id={slugify(String(children))} className="font-serif text-2xl font-bold text-ink mt-10 mb-4">{children}</h2>,
-  h3: ({ children }) => <h3 id={slugify(String(children))} className="font-serif text-xl font-semibold text-ink-muted mt-8 mb-3">{children}</h3>,
   p: ({ children }) => {
     const child = Array.isArray(children) ? children[0] : children
     if (child?.type === 'img') {
@@ -74,7 +74,11 @@ export default async function BlogPostPage({ params }) {
         </div>
 
         <div className="mdx-content">
-          <MDXRemote source={content} components={mdxComponents} />
+          <MDXRemote
+            source={content}
+            components={mdxComponents}
+            options={{ mdxOptions: { rehypePlugins: [rehypeHeadingIds] } }}
+          />
         </div>
       </div>
 
