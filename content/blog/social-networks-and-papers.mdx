@@ -6,10 +6,10 @@ tags: ["AI", "Social networks", "AI Safety", "Agent-based Models", "Review"]
 readingTime: "12 min read"
 ---
 
-# Paper 1: Model-Specific Echo Chamber Formation Patterns in Repeated LLM Agent Networks 
+## Paper 1: Model-Specific Echo Chamber Formation Patterns in Repeated LLM Agent Networks 
 [Link to paper](https://dl.acm.org/doi/10.1145/3816713.3816738)
 
-## The Gaps
+### The Gaps
 - Existing papers explore how to improve collaboration in multi-agentic systems,
 or focus on usefulness of diversity. 
 They don't examine the results that different models will produce in the same 
@@ -19,7 +19,7 @@ experimental considerations
 - Some research suggests that even smth as small as how the models come to decisions,
 can influence what the final consensus of a discussion be
 
-## Their Work
+### Their Work
 this paper examines:
 - how echo chambers form across different models 
 -whether the trajectory changes with the type of model being used
@@ -36,7 +36,7 @@ they compared the values of -
 To further check if their results were due to the interaction style or repeated updating,
 an auxillary no interaction control study was done for GPT-4o
 
-### Experiment Design
+#### Experiment Design
 - Independent variable: type of model used to make the agent group 
 - Dependent variables: Pz, DG, NCI, and Mean Belief Shift
 - Models used: GPT-4o,GPT-5.4-mini, Llama-3.3-70B, Mistral-Small-24B, Gemma-3n-E4B, and GLM-4.5-Air. 
@@ -62,7 +62,7 @@ current belief, current opinion text, long-term memory, and the opinion texts of
 The agent used its own persona and configuration to reflect on its opinion. The update
 step was similar to the interaction setting.  
 
-### Persona
+#### Persona
 The attributes were:
 - age
 - gender
@@ -72,7 +72,7 @@ The attributes were:
 - long term memory
 
 
-## Results
+### Results
 With respect to convergence or diagreement:
 
 - GPT-4o: fastest convergence pattern
@@ -93,15 +93,15 @@ difference of opinion among neighbouring agents reduced rapidly
 - Mistral-Small-24B, GPT-5.4-mini, Gemma-3n-E4B: DG decreased i.e. larger difference in opinion with neighbouring agents
 -  GLM-4.5-Air: Not much change in DG at all 
 
-## Main finding
+### Main finding
 the type of model affects the final outcome of a discourse in agentic networks, even if the
 network structure, recommendation algo, topics, language, etc. are the same.
 
 
-# Paper 2: Multilingual Agent-Based World Modeling for Social Science
+## Paper 2: Multilingual Agent-Based World Modeling for Social Science
 [Link to paper](https://arxiv.org/pdf/2512.07195)
 
-## Motivation
+### Motivation
 - opinions and attitudes on global issues are formed through multilingual and
 multimodal online discourse
 - if agents can take human memory and emulate human behavior, they can act as proxies
@@ -112,11 +112,11 @@ for humans in social scientific research or complement them
 3. exploring social theories
 4. predicting policy outcomes
 
-## The Gaps
+### The Gaps
 - cross-lingual and cross-cultural dynamics are understudied in ABMs
 - 
 
-## Their work
+### Their work
 - Create  Multilingual Agent-based World Modeling (MAWM) framework, for societal 
 modelling in a multi-turn format between LLM agents with diverse personas
 - Construction of Multilingual Agent Perspective Survey (MAPS), a benchmark dataset 
@@ -124,7 +124,7 @@ with  survey questions from GlobalOpinionQA, demographic personas derived from t
 spanning 50 countries and 28 languages across geographically diverse regions.
 - experiments and case studies on cultural assimilation and normative diffusion
 
-### Dataset
+#### Dataset
 -  they pair user settings sampled from multicultural populations with a broad set of social research 
 questions
 - for constructing user settings, they draw personas from World Values Survey
@@ -133,7 +133,7 @@ religion, and social class
 - For multilingual agent simulation, a native language is assigned
 based on country
 
-### Framework
+#### Framework
 MAWM is a framework where multi-turn interaction takes place between users and new organisation
 agents. 
 news org agents will generate posts to influence users 
@@ -142,13 +142,27 @@ users will compose posts, read recommended posts, and can vote on survey questio
 # Paper 3: Detecting Strategic Deception Using Linear Probes
 [Link to paper](https://arxiv.org/pdf/2502.03407)
 
-## Overview
+### Overview
 Models may employ strategies like obscuring their CoT to hide traces of deception, rendering a monitor agent useless. This paper evaluates
 whether linear probes can robustly identify deception or not.
+Some more examples of misaligned behaviour:
+- Some models will lie under pressure 
+- Some models will try to disable any oversight mechanisms and lie about it 
+- Some models will fake alignment so that they aren't trained again
+i.e. they resist change to the point of deception sometimes
 
-## Their work
+### Gaps 
+- prev work does not consider multi-turn conversations so their approach may not generalize well to these settings
+- evaluates human written responses, not agent written
+- focus on factual domains 
 
-### Datasets used
+### Their work
+
+### Motivation
+Big alignment risk is AI pursuing misaligned goals while also deceiving and hiding it's motives and actions.
+For e.g. sandbagging their evaluations or falsely pretending as if they are aligned
+
+#### Datasets used
 they use 2 datasets, 
 - one w contrasting instructions to be honest or deceptive 
 - one w responses to simple roleplaying scenarios
@@ -156,12 +170,12 @@ they use 2 datasets,
 aim is to test whether linear probes generalise to actual settings of deceptive behaviour by Llama-3.3-70BInstruct.
 this paper focuses on <b>strategic deception</b> ie the model focuses on inducing false beliefs to achieve some goal.
 
-### Motivation
-Big alignment risk is AI pursuing misaligned goals while also deceiving and hiding it's motives and actions.
-For e.g. sandbagging their evaluations or falsely pretending as if they are aligned
+#### Contributions
+- trained white box probes on non realistic datasets where deception is useful
+- test if these probes generalize to other scenarios 
+- evaluate whether these white-box probes would make good monitors
 
-### gaps 
-- prev work does not consider multi-turn conversations so their approach may not generalize well to these settings
-- evaluates human written responses, not agent written
-- focus on factual domains
+
+
+
 
